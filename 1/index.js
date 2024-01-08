@@ -76,7 +76,7 @@ const Actions = [
             type: "text",
             name: "comparision",
             message(values) {
-                console.log(values.compare);
+    
                 let res = Players.filter(player => values.compare.includes(player.jersey_number));
                 console.table(res);
                 return "Here is your comparision! Press enter to go back to menu";
