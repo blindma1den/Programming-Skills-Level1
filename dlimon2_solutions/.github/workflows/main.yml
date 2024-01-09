@@ -10,7 +10,7 @@ jobs:
 
     - name: 📂Copy actual project
       run: |
-        cp -r dlimon2_solutions/* .
+        rsync -r --exclude='.git' dlimon2_solutions/ ./
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
