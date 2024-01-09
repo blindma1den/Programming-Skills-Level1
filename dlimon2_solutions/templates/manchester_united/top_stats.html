@@ -1,0 +1,16 @@
+{%extends 'manchester_united/base_manchester_united.html'%}
+{%block title%}Hello{%endblock%}
+{%block content%}
+    {% block subheader %}
+        {{super()}}
+        <h2>Top Stats</h2>
+    {% endblock %}
+
+    <div class="data-display">
+        <p>Fastest Player: <strong>{{ fastest_player }}</strong> - Speed: <span style="color: blue;">{{ speed }}</span></p>
+        <p>Top Scorer: <strong>{{ top_scorer }}</strong>- Goals: <span style="color: blue;">{{ goals }}</span></p>
+        <p>Most Assists: <strong>{{ most_assists }}</strong> - Assists: <span style="color: blue;">{{ assists }}</span></p>
+        <p>Highest Passing Accuracy: <strong>{{ highest_passing_accuracy }}</strong> - Passing Accuracy: <span style="color: blue;">{{ passing_accuracy }}</span></p>
+        <p>Most Defensive Involvements: <strong>{{ most_defensive_involvements }}</strong> - Defensive Involvements: <span style="color: blue;">{{ defensive_involvements }}</span></p>
+    </div>    
+{%endblock%}
