@@ -1,14 +1,11 @@
 public class Player {
 
-    //name,goals, speed, assists, accuracy, defence.
     private final String NAME;
     private Integer goals;
     private Integer speed;
     private Integer assists;
     private Integer accuracy;
     private Integer defence;
-
-    //Generar getters and setters
 
     public Player(String NAME, Integer goals, Integer speed, Integer assists, Integer accuracy, Integer defence) {
         this.NAME = NAME;
