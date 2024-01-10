@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EXERCISE 2 LVL 1 | TRAVEL AGENCY</title>
+    <script defer src="./app.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>TRAVEL AGENCY</h1>
+      <h3>
+        We will help you choose the right destination according to your
+        preferences and money
+      </h3>
+      <form class="travel-form">
+        <label for="season-select">Select Season:</label>
+        <select id="season-select" name="season">
+          <option value="any">Any</option>
+          <option value="winter">Winter</option>
+          <option value="summer">Summer</option>
+          <option value="spring">Spring</option>
+          <option value="autumn">Autumn</option>
+        </select>
+
+        <label for="budget">Enter Your Budget:</label>
+        <input
+          type="number"
+          id="budget"
+          name="budget"
+          placeholder="Enter your budget"
+        />
+
+        <section id="activities-container" class="activities-container">
+          <label for="activities-select">Select Activity:</label>
+          <select id="activities-select" name="activitiesDropdown"></select>
+        </section>
+
+        <div id="activities-section">
+          <h3>Available Destinations:</h3>
+          <ul id="activities-list"></ul>
+        </div>
+
+        <div id="countries-section" style="display: none">
+          <h3>Recommended Countries:</h3>
+          <ul id="countries-list"></ul>
+        </div>
+
+        <div id="response-container"></div>
+
+        <br />
+      </form>
+    </main>
+  </body>
+</html>
