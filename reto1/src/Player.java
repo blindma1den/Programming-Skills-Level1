@@ -62,13 +62,13 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "NAME='" + NAME + '\'' +
-                ", goals=" + goals +
-                ", speed=" + speed +
-                ", assists=" + assists +
-                ", accuracy=" + accuracy +
-                ", defence=" + defence +
-                '}';
+        return
+                "Name = " + NAME +
+                "\nGoals = " + goals +
+                "\nSpeed = " + speed +
+                "\nAssists = " + assists +
+                "\nAccuracy = " + accuracy +
+                "\nDefensive Involvements = " + defence
+                ;
     }
 }
