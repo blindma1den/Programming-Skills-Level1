@@ -1,0 +1,155 @@
+[
+    {
+        "name": "General Medicine",
+        "doctors": [
+            {
+                "name": "Dr. Smith",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Johnson",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Davis",
+                "occupiedSlots": []
+            }
+        ]
+    },
+    {
+        "name": "Emergency Care",
+        "doctors": [
+            {
+                "name": "Dr. Williams",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Brown",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Miller",
+                "occupiedSlots": []
+            }
+        ]
+    },
+    {
+        "name": "Clinical Analysis",
+        "doctors": [
+            {
+                "name": "Dr. Wilson",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Moore",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Taylor",
+                "occupiedSlots": []
+            }
+        ]
+    },
+    {
+        "name": "Cardiology",
+        "doctors": [
+            {
+                "name": "Dr. Anderson",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Thomas",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Jackson",
+                "occupiedSlots": []
+            }
+        ]
+    },
+    {
+        "name": "Neurology",
+        "doctors": [
+            {
+                "name": "Dr. White",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Harris",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Martin",
+                "occupiedSlots": []
+            }
+        ]
+    },
+    {
+        "name": "Nutrition",
+        "doctors": [
+            {
+                "name": "Dr. Garcia",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Martinez",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Robinson",
+                "occupiedSlots": []
+            }
+        ]
+    },
+    {
+        "name": "Physiotherapy",
+        "doctors": [
+            {
+                "name": "Dr. Clark",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Rodriguez",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Lewis",
+                "occupiedSlots": []
+            }
+        ]
+    },
+    {
+        "name": "Traumatology",
+        "doctors": [
+            {
+                "name": "Dr. Lee",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Walker",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Hall",
+                "occupiedSlots": []
+            }
+        ]
+    },
+    {
+        "name": "Internal Medicine",
+        "doctors": [
+            {
+                "name": "Dr. Young",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. Hernandez",
+                "occupiedSlots": []
+            },
+            {
+                "name": "Dr. King",
+                "occupiedSlots": []
+            }
+        ]
+    }
+]
