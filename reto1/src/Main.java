@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     private static final HashMap<Integer, Player> players = new HashMap<>();
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException {
         initializePlayers();
@@ -38,12 +38,8 @@ public class Main {
                     mostDefensivePlayer();
                     Thread.sleep(2000);
                 }
-                case 8 -> {
-                    System.exit(0);
-                }
-                default -> {
-                    System.out.println("Wrong Option!");
-                }
+                case 8 -> System.exit(0);
+                default -> System.out.println("Wrong Option!");
             }
         }
     }

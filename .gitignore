@@ -8,6 +8,8 @@
 # Idea folder
 .idea/
 
+.fleet/
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
