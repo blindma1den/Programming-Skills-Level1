@@ -8,7 +8,20 @@
     <script defer src="./app.js"></script>
   </head>
   <body>
-    <main class="container">
+    <section id="form-container" class="form-container">
+      <h1>VALENCIA HOSPITAL</h1>
+      <form class="form">
+        <h2>LOGIN FORM</h2>
+        <input type="text" id="username" placeholder="Enter your username" />
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+        />
+        <input type="submit" id="login-button" value="Login" />
+      </form>
+    </section>
+    <main id="appointments-container" class="container" style="display: none">
       <h1>VALENCIA HOSPITAL</h1>
       <h3>Appointments Schedule Form</h3>
       <form class="appointment-form">
@@ -39,7 +52,7 @@
           </select>
           <button id="doctor-button">Next</button>
         </div>
-        <div id="time-container" class="time-container" style="display: none">
+        <div class="time-container" id="time-container" style="display: none">
           <label for="time">Select preferred time:</label>
           <select name="time" id="time-select">
             <option value="Choose a time" disabled>Choose a time</option>
@@ -62,7 +75,11 @@
         <button id="request-button" style="display: none">
           REQUEST APPOINTMENT
         </button>
+        <button id="request-another-button" style="display: none">
+          REQUEST ANOTHER APPOINTMENT
+        </button>
       </form>
+      <button id="logout-button" class="logout-button">LOGOUT</button>
     </main>
   </body>
 </html>

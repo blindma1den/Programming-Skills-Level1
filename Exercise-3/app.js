@@ -26,9 +26,18 @@ PROCESO:
 Login - Choose speciality - Choose Doctor - Choose time slot
 */
 
-//login
-
-//Appointment
+//login variables
+const loginForm = document.querySelector('.form');
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const formContainer = document.getElementById('form-container');
+const logoutButton = document.getElementById('logout-button');
+let usersArray = [];
+let wrongPasswordTimes = 0;
+let currentUser;
+const maxWrongAttempts = 3;
+//Appointment variables
+const appointmentsContainer = document.getElementById('appointments-container');
 const specialityContainer = document.getElementById('speciality-container');
 const doctorContainer = document.getElementById('doctor-container');
 const timeContainer = document.getElementById('time-container');
@@ -42,8 +51,10 @@ const timeButton = document.getElementById('time-button');
 const timeSlotSelect = document.getElementById('timeSlot-select');
 const timeSlotButton = document.getElementById('timeSlot-button');
 const requestButton = document.getElementById('request-button');
+const requestAnotherButton = document.getElementById('request-another-button');
 let specialitiesArray = [];
-let usersArray = [];
+
+//Funcion de fetch
 const fetchJson = async (url) => {
   try {
     const response = await fetch(url);
@@ -56,6 +67,17 @@ const fetchJson = async (url) => {
     console.log(error);
   }
 };
+//FETCH USERS
+fetchJson('./users.json')
+  .then((data) => {
+    if (data) {
+      usersArray = data;
+      console.log(usersArray);
+    }
+  })
+  .catch((error) => console.log(error));
+
+//FETCH SPECIALITIES
 fetchJson('./specialities.json')
   .then((data) => {
     if (data) {
@@ -65,65 +87,258 @@ fetchJson('./specialities.json')
   })
   .catch((error) => console.log(error));
 
+//LOGIN/LOGOUT PROCESS
+//Authenticate Function with lock at third wrong try
+const authenticate = () => {
+  let username = usernameInput.value;
+  let password = passwordInput.value;
+
+  currentUser = usersArray.find((user) => user.username === username);
+
+  if (!currentUser) {
+    console.log('Invalid username or password.');
+    return false;
+  }
+  if (currentUser.isLocked) {
+    console.log('User is locked.');
+    return false;
+  }
+
+  if (username === currentUser.username && password === currentUser.password) {
+    console.log('Authentication successful.');
+    showOperations();
+    return true;
+  } else {
+    wrongPasswordTimes = wrongPasswordTimes + 1;
+    console.log('Invalid username or password.');
+    console.log(`Attempts remaining: ${maxWrongAttempts - wrongPasswordTimes}`);
+
+    if (wrongPasswordTimes >= maxWrongAttempts) {
+      currentUser.isLocked = true;
+      console.log(
+        'You have exceeded the number of tries. Please try again later.'
+      );
+      return false;
+    }
+  }
+};
+//Hide and unhide operation if logged (lo vengo reciclando del lvl0)
+const showOperations = () => {
+  loginForm.style.display = 'none';
+  appointmentsContainer.style.display = 'block';
+  usernameInput.value = '';
+  passwordInput.value = '';
+};
+//FUNCION LOGOUT
+const logout = (e) => {
+  e.preventDefault();
+  currentUser = null;
+  loginForm.style.display = 'block';
+  appointmentsContainer.style.display = 'none';
+  console.log('Logged out.');
+};
+
+const handleFormSubmit = (e) => {
+  e.preventDefault();
+  authenticate();
+};
+loginForm.addEventListener('submit', handleFormSubmit);
+logoutButton.addEventListener('click', logout);
+
+const fillDoctorSelect = (doctors) => {
+  doctors.forEach((doctor) => {
+    const option = document.createElement('option');
+    option.value = doctor.name;
+    option.textContent = doctor.name;
+    doctorSelect.appendChild(option);
+  });
+};
+
+//FUNCION PARA MOSTRAR Y OCULTAR LOS ELEMENTOS CUANDO SON CLICKEADOS Y NO REPETIR TANTO CODIGO
+const toggleShowForm = (container = null, button = null, select = null) => {
+  container !== null
+    ? container.style.display == 'none'
+      ? (container.style.display = 'flex')
+      : (container.style.display = 'none')
+    : (container = null);
+  button?.style.display == 'none'
+    ? (button.style.display = 'flex')
+    : (button.style.display = 'none');
+  select?.disabled == false
+    ? (select.disabled = true)
+    : (select.disabled = false);
+};
+
+//SPECIALITY FORM CONTAINER
 specialityButton.addEventListener('click', (e) => {
   e.preventDefault();
-  doctorContainer.style.display = 'flex';
-  specialityButton.style.display = 'none';
-  specialitySelect.disabled = true;
+  let specialitySelected = specialitySelect.value;
+  doctorSelect.innerHTML = '';
 
-  const specialitySelected = specialitySelect.value;
+  toggleShowForm(doctorContainer, specialityButton, specialitySelect);
+
   const selectedSpecialityData = specialitiesArray.find(
     (speciality) => speciality.name === specialitySelected
   );
   const doctorsForSpeciality = selectedSpecialityData
     ? selectedSpecialityData.doctors
     : [];
-  const fillDoctorSelect = (doctors) => {
-    doctors.forEach((doctor) => {
-      const option = document.createElement('option');
-      option.value = doctor.name;
-      option.textContent = doctor.name;
-      doctorSelect.appendChild(option);
-    });
-  };
+
   fillDoctorSelect(doctorsForSpeciality);
+  doctorButton.style.display = 'block';
 });
 
+//DOCTOR FORM CONTAINER
 doctorButton.addEventListener('click', (e) => {
   e.preventDefault();
-  timeContainer.style.display = 'flex';
-  doctorButton.style.display = 'none';
-  doctorSelect.disabled = true;
-});
-timeButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  timeSlotContainer.style.display = 'flex';
-  timeButton.style.display = 'none';
-  timeSelect.disabled = true;
-  if (timeSelect.value === 'Afternoon') {
-    console.log('Afternoon'); //TODO : CREATE SELECT FOR TIMESLOTS IN BOTH WAYS
-  } else {
-    console.log('Morning');
-  }
-});
-timeSlotButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  requestButton.style.display = 'block';
-  timeSlotButton.style.display = 'none';
-  timeSlotSelect.disabled = true;
+
+  toggleShowForm(timeContainer, doctorButton, doctorSelect);
 });
 
+//TIME FORM CONTAINER
+timeButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  toggleShowForm(timeSlotContainer, timeButton, timeSelect);
+
+  if (timeSelect.value === 'Afternoon') {
+    const option1 = document.createElement('option');
+    option1.value = '15:00hs';
+    option1.textContent = '15:00hs';
+    timeSlotSelect.appendChild(option1);
+    const option2 = document.createElement('option');
+    option2.value = '17:00hs';
+    option2.textContent = '17:00hs';
+    timeSlotSelect.appendChild(option2);
+  } else {
+    const option1 = document.createElement('option');
+    option1.value = '10:00hs';
+    option1.textContent = '10:00hs';
+    timeSlotSelect.appendChild(option1);
+    const option2 = document.createElement('option');
+    option2.value = '11:00hs';
+    option2.textContent = '11:00hs';
+    timeSlotSelect.appendChild(option2);
+  }
+});
+
+//TIMESLOT FORM CONTAINER
+timeSlotButton.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  toggleShowForm(timeSlotButton, requestButton, timeSlotSelect);
+});
+let doctorsOccupiedSlots = {};
+
+//REQUEST BUTTON
 requestButton.addEventListener('click', (e) => {
   e.preventDefault();
+
   const specialitySelected = specialitySelect.value;
   const doctorSelected = doctorSelect.value;
   const timeSelected = timeSelect.value;
   const timeSlotSelected = timeSlotSelect.value;
+  const patient = { userId: currentUser.id, name: currentUser.username };
+
+  // Verificar si el timeslot ya está ocupado para este médico
+  if (
+    doctorsOccupiedSlots[doctorSelected] &&
+    doctorsOccupiedSlots[doctorSelected].includes(timeSlotSelected)
+  ) {
+    console.log('This timeslot is already occupied for this doctor.');
+  }
+  // Verificar si hay turnos disponibles para este médico segun el número máximo de turnos por médico por los timeSlots
+  const maxAppointmentsPerDoctor = 4;
+  const occupiedSlots =
+    doctorsOccupiedSlots[specialitySelected]?.[doctorSelected] || [];
+
+  if (occupiedSlots.length >= maxAppointmentsPerDoctor) {
+    console.log(
+      'All appointments with this doctor in this specialty are taken.'
+    );
+  }
+  if (
+    doctorsOccupiedSlots[doctorSelected] &&
+    doctorsOccupiedSlots[doctorSelected].length >= maxAppointmentsPerDoctor
+  ) {
+    console.log('All appointments with this doctor are taken.');
+  }
+
+  // Agregar el nuevo appointment al usuario
   const appointment = {
     speciality: specialitySelected,
     doctor: doctorSelected,
     time: timeSelected,
     timeSlot: timeSlotSelected,
+    patient: patient,
   };
   console.log(appointment);
+
+  const { speciality, doctor, timeSlot } = appointment;
+  currentUser.appointments.push({ speciality, doctor, timeSlot });
+
+  // Marcar el timeslot como ocupado para este médico
+  if (!doctorsOccupiedSlots[doctorSelected]) {
+    doctorsOccupiedSlots[doctorSelected] = [];
+  }
+  doctorsOccupiedSlots[doctorSelected].push(timeSlotSelected);
+
+  const specialityToUpdate = specialitiesArray.find(
+    (speciality) => speciality.name === specialitySelected
+  );
+
+  if (specialityToUpdate) {
+    const doctorToUpdate = specialityToUpdate.doctors.find(
+      (doctor) => doctor.name === doctorSelected
+    );
+
+    if (doctorToUpdate) {
+      doctorToUpdate.occupiedSlots.push(timeSlotSelected);
+    }
+  }
+  console.log('Appointment successful!');
+  if (currentUser.appointments.length > 2) {
+    let maxAppointmentsMessage = document.createElement('p');
+    maxAppointmentsMessage.textContent =
+      'We are sorry, you cannot make additionals appointments today. You will reach the max of three at day.';
+
+    timeSlotContainer.appendChild(maxAppointmentsMessage);
+    requestAnotherButton.style.display = 'none';
+    requestButton.style.display = 'none';
+  } else {
+    requestAnotherButton.style.display = 'block';
+    requestButton.style.display = 'none';
+  }
+});
+
+const resetForm = () => {
+  toggleShowForm(doctorContainer, specialityButton, specialitySelect);
+  toggleShowForm(timeContainer, doctorButton, doctorSelect);
+  toggleShowForm(timeSlotContainer, timeButton, timeSelect);
+};
+
+requestAnotherButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  let userSpecialities = [];
+
+  if (currentUser.appointments.length !== 0) {
+    userSpecialities = currentUser.appointments.map(
+      (appointment) => appointment.speciality
+    );
+
+    const availableSpecialities = specialitiesArray.filter(
+      (speciality) => !userSpecialities.includes(speciality.name)
+    );
+    specialitySelect.innerHTML = '';
+    availableSpecialities.forEach((speciality) => {
+      const option = document.createElement('option');
+      option.value = speciality.name;
+      option.textContent = speciality.name;
+      specialitySelect.appendChild(option);
+    });
+  }
+
+  resetForm();
+  requestAnotherButton.style.display = 'none';
+  timeSlotButton.style.display = 'flex';
+  timeSlotSelect.disabled = false;
 });
