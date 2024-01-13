@@ -68,6 +68,10 @@ int main(){
                 scanf("%s",password);
                 user_constructor(users,user_index,username,password);
                 user_index++;
+                for(int i = 0; i < 20; i++){
+                    username[i]=' ';
+                    password[i]=' ';
+                }
                 break;
             case 2:
                 menu2 = 1;
