@@ -30,4 +30,9 @@ public record User(String name,
         }
         return false;
     }
+
+    boolean isFreeForUser(Slot slot) {
+        return getUserSlotsStream()
+                   .noneMatch(slotFromUser -> slotFromUser.timeStamp().equals(slot.timeStamp()));
+    }
 }

@@ -32,55 +32,43 @@ public class Main {
         var numberSelectedDoctor = printOptions(possibleDoctors.stream()
                                                                .map(Doctor :: name)
                                                                .toList());
+
         var selectedDoctorByUser = possibleDoctors.get(numberSelectedDoctor);
         var possibleSlots = filterSlotsByDoctorAndUser(selectedDoctorByUser);
 
         System.out.println("Select a free slot");
         var numberOfSelectedSlot = printOptions(possibleSlots);
 
-        var appointment = possibleSlots.get(numberOfSelectedSlot)
-                                               .registerAppointment();
+        var appointment = possibleSlots.get(numberOfSelectedSlot).registerAppointment();
 
-        user = user.registerAppointment(selectedDoctorByUser,
-                                        appointment);
+        user = user.registerAppointment(selectedDoctorByUser, appointment);
 
-        Utils.doctors = updateDoctor(possibleSlots,
-                                     appointment,
-                                     selectedDoctorByUser);
+        Doctor updatedDoctor = updateDoctorWithNewAppointment(appointment, selectedDoctorByUser);
 
+        updateDoctorsList(updatedDoctor);
+
+    }
+
+    private static Doctor updateDoctorWithNewAppointment(Slot appointment,
+                                                         Doctor selectedDoctorByUser) {
+        var updatedSlotList = selectedDoctorByUser.getFreeSlotStream(user)
+                                                  .map(slot -> slot.id().equals(appointment.id()) ? appointment : slot)
+                                                  .toList();
+        return selectedDoctorByUser.registerAppointment(updatedSlotList);
     }
 
     private static List<Slot> filterSlotsByDoctorAndUser(Doctor selectedDoctorByUser) {
-        return selectedDoctorByUser.slotList()
-                                   .stream()
-                                   .filter(Slot :: free)
-                                   .filter(Main :: isFreeForUser)
-                                   .toList();
+        return selectedDoctorByUser.getFreeSlotStream(user).toList();
     }
 
-    private static List<Doctor> updateDoctor(List<Slot> possibleSlots,
-                                             Slot newSlot,
-                                             Doctor selectedDoctor)
+    private static void updateDoctorsList(Doctor selectedDoctor)
     {
-        var updatedSlotList = possibleSlots.stream()
-                                           .map(slot -> slot.id()
-                                                            .equals(newSlot.id()) ? newSlot : slot)
-                                           .toList();
-
-        return Utils.doctors.stream().map(doctor -> {
-            if (doctor.name().equals(selectedDoctor.name())) {
-                return new Doctor(selectedDoctor.speciality(),
-                                  selectedDoctor.name(),
-                                  updatedSlotList);
-            }
-            return doctor;
-        }).toList();
+        Utils.doctors = Utils.doctors.stream().map(doctor ->
+                                                           doctor.name()
+                                                                 .equals(selectedDoctor.name())?
+                                                                   selectedDoctor: doctor).toList();
     }
 
-    private static boolean isFreeForUser(Slot slot) {
-        return user.getUserSlotsStream()
-                   .noneMatch(slotFromUser -> slotFromUser.timeStamp().equals(slot.timeStamp()));
-    }
 
     private static List<Doctor> filterDoctorsBySpeciality(int selectedSpeciality) {
         return Utils.doctors.stream()
