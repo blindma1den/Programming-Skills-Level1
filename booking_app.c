@@ -29,6 +29,7 @@ typedef struct user{
     char name[20];
     char surname[20];
     char id[20];
+    int first_time;
     int reservation_index;
     int total_cost;
     struct reservation reservations[256];
@@ -47,6 +48,7 @@ void user_constructor(user * u, char * user_u, char * user_p, int user_index){
     strcpy(u[user_index].password,user_p);
     u[user_index].reservation_index=0;
     u[user_index].total_cost = 0;
+    u[user_index].first_time = 0;
 
 }
 //Procedure to add a reservation to an user's account
@@ -61,10 +63,12 @@ void add_reservation(user* u, int user_index,char * country, char * city,char * 
     u[user_index].total_cost = u[user_index].total_cost + u[user_index].reservations[u[user_index].reservation_index].cost;
 }
 
+//Procedure to add the personal data to an user's account
 void add_personal_information(user * u, int user_index, char * name, char *surname, char *id){
     strcpy(u[user_index].name , name);
     strcpy(u[user_index].surname, surname);
     strcpy(u[user_index].id, id);
+    u[user_index].first_time=1;
 }
 
 int main(){
@@ -118,9 +122,11 @@ int main(){
     //Price for room
     int rooms_price[]={100 ,200, 350,450, 550}; 
     while(menu1==1){
+        //Main Menu
         printf("RH Hotels Menu\nPlease Select an option\n1-Create an account\n2-Log in\n3-Exit\n\n");
         scanf("%i",&menu_option);
         switch(menu_option){
+            //Creating an Account
             case 1:
                 printf("Creating an Account\nPlease enter a new Username(no blanck spaces):");
                 scanf("%s",user_u);
@@ -134,12 +140,14 @@ int main(){
                 }
                 break;
             case 2:
+            //Log in
                 if(user_counter>=1){
                     printf("Log in\nPlease enter your Credentials\n\nUsername:");
                     scanf("%s",user_u);
                     printf("Now the password:");
                     scanf("%s",user_p);
                     log_in_flag = 0;
+                    //Validating the credentials
                     for(int i = 0; i < user_counter; i++){
                         if(0 == strcmp(users[i].username,user_u) && 0 == strcmp(users[i].password,user_p)){
                             log_in_flag = 1;
@@ -150,12 +158,15 @@ int main(){
                         user_u[i]=' ';
                         user_p[i]=' ';
                     }
+                    //Choosing a Country
                     if(log_in_flag == 1){
                         printf("Log In Successful\n\nNow choose the an hotel location:\n1-Spain\n2-Germany\n3-Italy\n4-France\n5-Portugal\n\n");
                         scanf("%i",&country_option);
+                        //Validating the country option
                         if(country_option<=5 && country_option>0){
                             printf("Please select a location:");
                             city_flag=0;
+                            //Asking the city based on the choosen country and validating the answer
                             switch(country_option){
                                 case 1:
                                     printf("The options are:\n1-Barcelona\n2-Madrid\n3-Valencia\n\n");
@@ -206,6 +217,7 @@ int main(){
                                     printf("Invalid option\n\n");
                                     break;
                             }
+                            //Getting the date of the reservation
                             if(city_flag==1){
                                 printf("\nEnter the month's name:");
                                 scanf("%s",month);
@@ -215,6 +227,7 @@ int main(){
                                 scanf("%s",hour);
                                 menu2=1;
                                 while(menu2==1){
+                                    //The type of room, amount of rooms and nights
                                     printf("Reservation MENU\n\n");                                    
                                     printf("Now select a room type\n1-Single room\n2-Double room\n3-Group room\n4-VIP suite\n5-Luxury suite\n\n");
                                     scanf("%i",&room_option);
@@ -225,21 +238,30 @@ int main(){
                                             printf("\nPlease enter the number of nights:");
                                             scanf("%i",&nights);
                                             if(nights>0){
+                                                //Calculating the price
                                                 total_price =  rooms_price[room_option-1] * nights;
                                                 rooms[room_option-1] = rooms[room_option-1] - room_amount;
-                                                printf("Enter your name:");
-                                                scanf("%s",user_name);
-                                                printf("\nEnter your surname:");
-                                                scanf("%s",user_surname);
-                                                printf("\nEnter your ID/Passport number:");
-                                                scanf("%s",user_id);
+                                                //Getting the user personal info
+                                                //Only the first time we ask the user his personal info
+                                                if(users[user_index].first_time==0){
+                                                    printf("Enter your name:");
+                                                    scanf("%s",user_name);
+                                                    printf("\nEnter your surname:");
+                                                    scanf("%s",user_surname);
+                                                    printf("\nEnter your ID/Passport number:");
+                                                    scanf("%s",user_id);
+                                                }
+                                                //Showing the total price
                                                 printf("The total price would be %i, do you agree ?\n1-Yes\n2-No\n\n",total_price);
                                                 scanf("%i",&price_option);
                                                 switch(price_option){
                                                     case 1:
                                                         add_reservation(users,user_index,countries[country_option-1],cities[country_option-1][place_option-1],month,day,hour,total_price);
-                                                        add_personal_information(users,user_index,user_name,user_surname, user_id);
+                                                        if(users[user_index].first_time==0){
+                                                            add_personal_information(users,user_index,user_name,user_surname, user_id);
+                                                        }                                                        
                                                         printf("\nReservation Successful\n\n");
+                                                        //Asking if he wants to make another reservation
                                                         printf("Do you want to reserve another type or book?\n1-Yes\n2-No\n\n");
                                                         scanf("%i",&another_reservation);
                                                         switch(another_reservation){
@@ -268,7 +290,7 @@ int main(){
                                                 printf("Invalid amount\n\n");
                                             }                            
                                         }else{
-                                            printf("There no more rooms of that type avalaible, try again\n\n");
+                                            printf("There are no enough rooms of that type avalaible, try again\n\n");
                                         }
                                     }else{
                                         printf("Invalid option\n\n");
