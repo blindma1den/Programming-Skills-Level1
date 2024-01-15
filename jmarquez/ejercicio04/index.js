@@ -124,6 +124,7 @@ function finishProcess(n) {
 					Romm type:${Object.keys(selectedRoom).toString()}
 					Total to pay: $${initialCost * n}
 						`);
+						return readline.close();
 					}
 				});
 			});
