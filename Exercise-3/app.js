@@ -1,4 +1,6 @@
 /*
+ME FALTO BASTANTE IMPLEMENTACIÓN COMO ALMACENAR LAS CITAS EN  LOCALSTORAGE Y LUEGO MANEJAR QUE CUANDO LOGUEE OTRO USUARIO TENGA DISPONIBLE
+DISTINTOS HORARIOS Y DOCTORES SEGUN LA OCUPACION DE LOS MISMO, PERO ME VOY A ATRASAR MUCHO SI SIGO.
 
 The Valencia Hospital is developing an application to manage appointments. Design an algorithm for this application with the following features:
 
@@ -13,14 +15,15 @@ The user can choose their preferred specialist.
 The basic process is: Login -> Choose specialty -> Choose doctor -> Choose time slot.
 
 RESUMEN: App para manejar turnos para un Hospital de Valencia
-LOGIN : 3 intentos hasta el bloqueo de usuario.
+*DONE* LOGIN : 3 intentos hasta el bloqueo de usuario. 
 Condiciones:
-ESPECIALIDADES: General Medicine, Emergency Care, Clinical Analysis, Cardiology, Neurology, 
+
+*DONE* ESPECIALIDADES: General Medicine, Emergency Care, Clinical Analysis, Cardiology, Neurology, 
                 Nutrition, Physiotherapy, Traumatology, and Internal Medicine.
-Hay 3 medicos por area los cuales pondremos a mano sus nombres
-Cada usuario puede sacar hasta 3 turnos máximo. Un turno para cada area y solo 1 turno x medico. 
-Para sacar turno se elige la especialidad, morning or afternoon, y que muestre horarios disponibles que pondremos a mano
-Solo se mostrarán los especialistas disponibles y ahi elegirá el user.
+*DONE* Hay 3 medicos por area los cuales pondremos a mano sus nombres
+*DONE* Cada usuario puede sacar hasta 3 turnos máximo. Un turno para cada area y solo 1 turno x medico. 
+*DONE* Para sacar turno se elige la especialidad, morning or afternoon, y que muestre horarios disponibles que pondremos a mano
+*DONE* Solo se mostrarán los especialistas disponibles y ahi elegirá el user.
 
 PROCESO:
 Login - Choose speciality - Choose Doctor - Choose time slot
@@ -239,7 +242,7 @@ requestButton.addEventListener('click', (e) => {
   const timeSlotSelected = timeSlotSelect.value;
   const patient = { userId: currentUser.id, name: currentUser.username };
 
-  // Verificar si el timeslot ya está ocupado para este médico
+  // Verificar si el timeslot ya está ocupado para este médico, en caso de ser otro user
   if (
     doctorsOccupiedSlots[doctorSelected] &&
     doctorsOccupiedSlots[doctorSelected].includes(timeSlotSelected)
@@ -296,6 +299,7 @@ requestButton.addEventListener('click', (e) => {
     }
   }
   console.log('Appointment successful!');
+
   if (currentUser.appointments.length > 2) {
     let maxAppointmentsMessage = document.createElement('p');
     maxAppointmentsMessage.textContent =
@@ -335,6 +339,7 @@ requestAnotherButton.addEventListener('click', (e) => {
       option.textContent = speciality.name;
       specialitySelect.appendChild(option);
     });
+    timeSlotSelect.innerHTML = '';
   }
 
   resetForm();
