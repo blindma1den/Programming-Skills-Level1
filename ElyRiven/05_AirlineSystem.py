@@ -13,8 +13,8 @@
 from datetime import datetime
 
 USERDATA = {
-    'username': 'e',
-    'password': 'e'
+    'username': 'elizabeth',
+    'password': 'pass123'
 }
 
 DESTINATIONS = ['turkey', 'greece', 'lebanon', 'spain', 'portugal']
