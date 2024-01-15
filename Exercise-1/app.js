@@ -85,12 +85,6 @@ const comparePlayers = (jerseyNumber1, jerseyNumber2) => {
   rl.question('\nPress Enter to go back to Main Menu...', showMenu);
 };
 
-// const getFastestPlayer = () =>{}
-// const getTopScorerPlayer = () =>{}
-// const getTopAssistPlayer = () =>{}
-// const getTopPassingAccuracyPlayer = () =>{}
-// const getTopDefensiveInvolvementsPlayer = () =>{}
-
 const getTopPlayer = (category) => {
   const topPlayer = Players.reduce((prev, current) =>
     prev[category] > current[category] ? prev : current

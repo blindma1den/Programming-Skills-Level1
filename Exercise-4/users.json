@@ -1,0 +1,14 @@
+[
+    {
+        "id": "001",
+        "username": "leniador",
+        "password": "123",
+        "reservations": []
+    },
+    {
+        "id": "002",
+        "username": "daniela",
+        "password": "321",
+        "reservations": []
+    }
+]

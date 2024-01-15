@@ -1,0 +1,39 @@
+[
+    {
+        "Country": "Spain",
+        "Cities": [
+            "Valencia",
+            "Barcelona",
+            "Madrid"
+        ]
+    },
+    {
+        "Country": "Germany",
+        "Cities": [
+            "Berlin",
+            "Munich"
+        ]
+    },
+    {
+        "Country": "Italy",
+        "Cities": [
+            "Rome",
+            "Milan"
+        ]
+    },
+    {
+        "Country": "France",
+        "Cities": [
+            "Paris",
+            "Marseille"
+        ]
+    },
+    {
+        "Country": "Portugal",
+        "Cities": [
+            "Madeira",
+            "Lisbon",
+            "Porto"
+        ]
+    }
+]
