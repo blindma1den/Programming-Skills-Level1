@@ -10,8 +10,8 @@
 # print the total cost, and if the user agrees, print a confirmation message for the reservation. If not, return to the main menu.
 
 USERDATA = {
-    'username': 'e',
-    'password': 'e'
+    'username': 'elyriven',
+    'password': 'pass123'
 }
 
 Spain_Hotels = [
