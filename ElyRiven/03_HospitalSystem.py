@@ -11,8 +11,8 @@
 # The basic process is: Login -> Choose specialty -> Choose doctor -> Choose time slot.
 
 USERDATA = {
-    'username': 'e',
-    'password': 'e'
+    'username': 'elyriven',
+    'password': 'pass123'
 }
 AVAILABLE_SCHEDULE = ["morning - 08:00", "afternoon - 16:30"]
 
