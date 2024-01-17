@@ -16,7 +16,7 @@ public record Player (String name,
                       Integer jerseyNumber)
 {
     public static final Map<String, Comparator<Player>> COMPARATORS = Map.of(
-            "goals", Comparator.comparingInt(Player :: speed),
+            "goals", Comparator.comparingInt(Player :: goals),
             "speed", Comparator.comparingInt(Player :: speed),
             "assists", Comparator.comparingInt(Player :: assists),
             "passing", Comparator.comparingInt(Player :: passingAccuracy),
