@@ -36,26 +36,23 @@ def before_request_validations():
 def hello():
     
     if request.method == 'GET':
-        if request.args:
-            context = request.args.to_dict()
-            return render_template('dani_travel/hello.html', **context)
         return render_template('dani_travel/hello.html')
     
-    elif request.method == 'POST':
 
-        data = request.form.to_dict()
-        
-        budget = int(data['budget'])
-        print(session['dani_travel_destinations'][0]['activities'].values())
-        best_travels = [item for item in session['dani_travel_destinations'] 
-                        if item['season'].lower() == data['season'] 
-                        and item['cost'] <= budget 
-                        and any(data['experiences'].lower() in activity.lower() for activity in item['activities'].values())]
+@dani_travel.route('/best_travel', methods=['POST'])
+def best_travel():
+    
+    data = request.form.to_dict()
+    budget = int(data['budget'])
+    print(session['dani_travel_destinations'][0]['activities'].values())
+    best_travels = [item for item in session['dani_travel_destinations'] 
+                    if item['season'].lower() == data['season'] 
+                    and item['cost'] <= budget 
+                    and any(data['experiences'].lower() in activity.lower() for activity in item['activities'].values())]
 
-        best_travels_sorted_by_cost = sorted(best_travels, key=lambda x: x['cost'])
-        print(best_travels_sorted_by_cost)
-        context = {
-            'best_travels': best_travels_sorted_by_cost
-        }
+    best_travels_sorted_by_cost = sorted(best_travels, key=lambda x: x['cost'])
+    print(best_travels_sorted_by_cost)
+    context = {
+        'best_travels': best_travels_sorted_by_cost }
 
-        return redirect(url_for('dani_travel.hello', **context))
+    return render_template('dani_travel/best_travel.html', **context)

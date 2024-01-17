@@ -13,11 +13,7 @@
             text-align: center;
         }
     </style>
-
-    {% if best_travels %}
-    <p>{{best_travels}}</p>
-    {% endif %}
-    <form action="{{url_for('dani_travel.hello')}}" method="post">
+    <form action="{{url_for('dani_travel.best_travel')}}" method="post">
         <label for="season">Season:</label>
         <select id="season" name="season">
             <option value="winter">Winter</option>
@@ -28,14 +24,12 @@
 
         <label for="experiences">Experiences:</label>
         <div>
-            <input type="checkbox" id="cultural" name="experiences" value="cultural">
-            <label for="cultural">Cultural</label>
-
-            <input type="checkbox" id="extreme" name="experiences" value="extreme">
-            <label for="extreme">Extreme</label>
-
-            <input type="checkbox" id="tour" name="experiences" value="tour">
-            <label for="tour">Tour</label>
+            <label for="experiences">Experiences:</label>
+            <select id="experiences" name="experiences" multiple>
+                <option value="cultural">Cultural</option>
+                <option value="extreme">Extreme</option>
+                <option value="tour">Tour</option>
+            </select>
         </div>
 
         <br><label for="budget">Budget:</label>

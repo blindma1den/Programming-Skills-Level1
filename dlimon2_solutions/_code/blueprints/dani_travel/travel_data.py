@@ -3,7 +3,7 @@ TRAVEL_DATA = [
         "season": "Winter",
         "destinations": ["Andorra", "Switzerland"],
         "activities": {
-            "Andorra": "skiing activities",
+            "Andorra": "extreme skiing activities",
             "Switzerland": "tour of the Swiss Alps"
         },
         "cost": 100
