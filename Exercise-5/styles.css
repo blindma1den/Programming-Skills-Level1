@@ -64,10 +64,12 @@ button:hover {
   background-color: #45a049;
 }
 
-.countries-container,
-.cities-container,
-.room-type-container,
-.nights-container,
+.origin-countries-container,
+.destination-countries-container,
+.date-container,
+.condition-container,
+.luggage-container,
+.meal-container,
 .user-data-container {
   display: flex;
   flex-direction: column;
