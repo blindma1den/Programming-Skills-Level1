@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 3 LVL1 | Valencia Hospital Appointments App</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <section id="form-container" class="form-container">
+      <h1>VALENCIA HOSPITAL</h1>
+      <form class="form">
+        <h2>LOGIN FORM</h2>
+        <input type="text" id="username" placeholder="Enter your username" />
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+        />
+        <input type="submit" id="login-button" value="Login" />
+      </form>
+    </section>
+    <main id="appointments-container" class="container" style="display: none">
+      <h1>VALENCIA HOSPITAL</h1>
+      <h3>Appointments Schedule Form</h3>
+      <form class="appointment-form">
+        <div id="speciality-container" class="speciality-container">
+          <label for="speciality">Select Speciality:</label>
+          <select id="speciality-select" name="speciality">
+            <option value="0" disabled>Choose Speciality</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Clinical Analysis">Clinical Analysis</option>
+            <option value="Emergency Care">Emergency Care</option>
+            <option value="General Medicine">General Medicine</option>
+            <option value="Internal Medicine">Internal Medicine</option>
+            <option value="Neurology">Neurology</option>
+            <option value="Nutrition">Nutrition</option>
+            <option value="Physiotherapy">Physiotherapy</option>
+            <option value="Traumatology">Traumatology</option>
+          </select>
+          <button id="speciality-button">NEXT</button>
+        </div>
+        <div
+          id="doctor-container"
+          class="doctor-container"
+          style="display: none"
+        >
+          <label for="doctor">Choose Doctor:</label>
+          <select name="doctor-select" id="doctor-select">
+            <option value="Choose a doctor" disabled>Choose a Doctor</option>
+          </select>
+          <button id="doctor-button">Next</button>
+        </div>
+        <div class="time-container" id="time-container" style="display: none">
+          <label for="time">Select preferred time:</label>
+          <select name="time" id="time-select">
+            <option value="Choose a time" disabled>Choose a time</option>
+            <option value="Morning">Morning</option>
+            <option value="Afternoon">Afternoon</option>
+          </select>
+          <button id="time-button">Next</button>
+        </div>
+        <div
+          class="timeSlot-container"
+          id="timeSlot-container"
+          style="display: none"
+        >
+          <label for="timeSlot">Select Appointment Time Slot:</label>
+          <select name="timeSlot" id="timeSlot-select">
+            <option value="0" disabled>Choose a time Slot</option>
+          </select>
+          <button id="timeSlot-button">NEXT</button>
+        </div>
+        <button id="request-button" style="display: none">
+          REQUEST APPOINTMENT
+        </button>
+        <button id="request-another-button" style="display: none">
+          REQUEST ANOTHER APPOINTMENT
+        </button>
+      </form>
+      <button id="logout-button" class="logout-button">LOGOUT</button>
+    </main>
+  </body>
+</html>

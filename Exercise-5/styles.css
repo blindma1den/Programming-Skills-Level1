@@ -1,0 +1,81 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+
+  width: 50%;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h3 {
+  text-align: center;
+  color: #242424;
+}
+
+.reservations-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input,
+select {
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button,
+input[type='submit'] {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.origin-countries-container,
+.destination-countries-container,
+.date-container,
+.condition-container,
+.luggage-container,
+.meal-container,
+.user-data-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+  padding: 10px;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 4 | RH Hotels</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <section id="form-container" class="form-container">
+      <h1>RH HOTELS</h1>
+      <form class="form">
+        <h2>LOGIN FORM</h2>
+        <input type="text" id="username" placeholder="Enter your username" />
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+        />
+        <input type="submit" id="login-button" value="Login" />
+      </form>
+    </section>
+    <main id="reservations-container" class="container" style="display: none">
+      <h1>RH HOTELS CHAIN</h1>
+      <h3>Rooms Reservation Form</h3>
+      <form class="reservations-form">
+        <!-- COUNTRIES CONTAINER -->
+        <div id="countries-container" class="countries-container">
+          <label for="countries">Select Country:</label>
+          <select id="countries-select" name="countries">
+            <option value="0" disabled>Choose Country</option>
+            <option value="Spain">Spain</option>
+            <option value="Germany">Germany</option>
+            <option value="Italy">Italy</option>
+            <option value="France">France</option>
+            <option value="Portugal">Portugal</option>
+          </select>
+          <button id="countries-button">NEXT</button>
+        </div>
+        <!-- CITIES CONTAINER -->
+        <div
+          id="cities-container"
+          class="cities-container"
+          style="display: none"
+        >
+          <label for="cities">Choose City:</label>
+          <select name="cities-select" id="cities-select">
+            <option value="0" disabled>Choose a City</option>
+          </select>
+          <button id="cities-button">Next</button>
+        </div>
+        <!-- ROOM TYPE CONTAINER -->
+        <div id="room-type-container" style="display: none">
+          <label for="room-type">Choose Room Type:</label>
+          <select name="room-type-select" id="room-type-select">
+            <option value="0" disabled>Choose Room Type</option>
+            <option value="100">Single Room</option>
+            <option value="200">Double Room</option>
+            <option value="350">Group Room</option>
+            <option value="450">VIP Suite</option>
+            <option value="550">Leisure Suite</option>
+          </select>
+          <button id="room-type-button">Next</button>
+        </div>
+        <!-- NIGHTS CONTAINER -->
+        <div
+          class="nights-container"
+          id="nights-container"
+          style="display: none"
+        >
+          <label for="nights"
+            >Choose the number of nights you want to reserve:</label
+          >
+          <input id="nights-input" type="number" min="1" />
+          <button id="nights-button">Next</button>
+        </div>
+        <!-- USER DATA CONTAINER -->
+        <div
+          id="user-data-container"
+          class="userdata-container"
+          style="display: none"
+        >
+          <input
+            type="text"
+            id="first-name-input"
+            placeholder="Enter your First Name"
+            required
+          />
+          <input
+            type="text"
+            id="last-name-input"
+            placeholder="Enter your Last Name"
+            required
+          />
+          <input
+            type="text"
+            id="passport-input"
+            placeholder="Enter your Passport or ID"
+            required
+          />
+          <button id="summary-button">SUMMARY & PRICE</button>
+          <p>Check summary in console xD</p>
+        </div>
+
+        <button id="submit-reservation-button" style="display: none">
+          SUBMIT RESERVATION
+        </button>
+      </form>
+      <button id="logout-button" class="logout-button">LOGOUT</button>
+    </main>
+  </body>
+</html>

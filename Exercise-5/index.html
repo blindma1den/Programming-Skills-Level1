@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 5 | Turkish Airlines</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <section id="form-container" class="form-container">
+      <h1>TURKISH AIRLINES</h1>
+      <form class="form">
+        <h2>LOGIN FORM</h2>
+        <input type="text" id="username" placeholder="Enter your username" />
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+        />
+        <input type="submit" id="login-button" value="Login" />
+      </form>
+    </section>
+    <main id="reservations-container" class="container" style="display: none">
+      <h1>TURKISH AIRLINES</h1>
+      <h3>Travel Reservation Form</h3>
+      <form class="reservations-form">
+        <!-- ORIGIN COUNTRY CONTAINER -->
+        <div id="origin-countries-container" class="origin-countries-container">
+          <label for="origin-countries">Select Origin Country:</label>
+          <select id="origin-countries-select" name="origin-countries">
+            <option value="0" disabled>Choose your origin Country</option>
+            <option value="Greece">Greece</option>
+            <option value="Lebanon">Lebanon</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Spain">Spain</option>
+            <option value="Turkey">Turkey</option>
+          </select>
+          <button id="origin-countries-button">NEXT</button>
+        </div>
+        <!-- DESTINATION COUNTRY CONTAINER -->
+        <div
+          id="destination-countries-container"
+          class="destination-countries-container"
+          style="display: none"
+        >
+          <label for="destination-countries">Select Destination Country:</label>
+          <select
+            id="destination-countries-select"
+            name="destination-countries"
+          >
+            <option value="0" disabled>Choose your destination Country</option>
+            <option value="Greece">Greece</option>
+            <option value="Lebanon">Lebanon</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Spain">Spain</option>
+            <option value="Turkey">Turkey</option>
+          </select>
+          <button id="destination-countries-button">NEXT</button>
+        </div>
+
+        <!-- DATE CONTAINER -->
+        <div id="date-container" class="date-container" style="display: none">
+          <label for="departure-date">Select Departure Date:</label>
+          <input type="date" id="departure-date-input" name="date" required />
+          <label for="return-date">Select Return Date:</label>
+          <input
+            type="date"
+            id="return-date-input"
+            name="return-date"
+            required
+          />
+          <button id="date-button">NEXT</button>
+        </div>
+        <!-- CONDITION CONTAINER -->
+        <div
+          id="condition-container"
+          class="condition-container"
+          style="display: none"
+        >
+          <label for="condition">Select Travel Condition:</label>
+          <select id="condition-select" name="condition">
+            <option value="0" disabled>Choose your Travel Condition</option>
+            <option value="Economic">Economic</option>
+            <option value="First Class">First Class</option>
+          </select>
+          <button id="condition-button">NEXT</button>
+        </div>
+        <!-- LUGAGGE CONTAINER-->
+        <div
+          id="luggage-container"
+          class="luggage-container"
+          style="display: none"
+        >
+          <label for="luggage"
+            >Do you want an additional luggage in hold?</label
+          >
+          <select name="luggage" id="luggage-select">
+            <option value="0" disabled>Choose...</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          <button id="luggage-button">NEXT</button>
+        </div>
+        <!-- MEAL CONTAINER -->
+        <div id="meal-container" class="meal-container" style="display: none">
+          <label for="meal">Select preferred Meal:</label>
+          <select id="meal-select" name="meal">
+            <option value="0" disabled>Choose your preferred Meal</option>
+            <option value="Regular">Regular</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Kosher">Kosher</option>
+          </select>
+          <button id="meal-button">NEXT</button>
+        </div>
+        <!-- USER DATA CONTAINER -->
+        <div
+          id="user-data-container"
+          class="userdata-container"
+          style="display: none"
+        >
+          <input
+            type="text"
+            id="first-name-input"
+            name="first-name"
+            placeholder="Enter your First Name"
+            required
+          />
+          <input
+            type="text"
+            id="last-name-input"
+            placeholder="Enter your Last Name"
+            name="last-name"
+            required
+          />
+          <input
+            type="text"
+            id="passport-input"
+            name="passport"
+            placeholder="Enter your Passport or ID"
+            required
+          />
+          <button id="summary-button">SUMMARY</button>
+          <p>Check summary in console xD</p>
+        </div>
+
+        <button id="submit-reservation-button" style="display: none">
+          SUBMIT RESERVATION
+        </button>
+      </form>
+      <button id="logout-button" class="logout-button">LOGOUT</button>
+    </main>
+  </body>
+</html>
