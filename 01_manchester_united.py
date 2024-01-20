@@ -114,13 +114,24 @@ def compare_two_players(player1, player2):
             out_print += "\n"
             players_count += 1
         if players_count == 2:
+            #TODO: show result in a comparation table
             print(out_print)
             return True
     return False
 
 def find_fastest_player():
+    fastest_name = ""
+    points_in_speed = 0
     for key, player in manchester_players.items():
-        print(player["name"])
+        if points_in_speed < player["points_in_speed"]:
+            fastest_name = player["name"]
+            points_in_speed = player["points_in_speed"]
+    if points_in_speed > 0:
+        print("Fastest player:", fastest_name)
+        print("Points in speed:", points_in_speed)
+        print("")
+        return True
+    return False
 
 def find_top_goal_scorer():
     print()
@@ -156,7 +167,10 @@ while option != 8:
             print("")
         input("Press ENTER to continue")
     elif option == 3:
-        find_fastest_player()
+        result = find_fastest_player()
+        if result == False:
+            print("\nUnknown error. Please try again.")
+            print("")
         input("Press ENTER to continue")
     elif option == 4:
         find_top_goal_scorer()
