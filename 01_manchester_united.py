@@ -134,7 +134,18 @@ def find_fastest_player():
     return False
 
 def find_top_goal_scorer():
-    print()
+    top_scorer_name = ""
+    more_goals = 0
+    for key, player in manchester_players.items():
+        if more_goals < player["goals"]:
+            top_scorer_name = player["name"]
+            more_goals = player["goals"]
+    if more_goals > 0:
+        print("Top scorer player:", top_scorer_name)
+        print("Goals:", more_goals)
+        print("")
+        return True
+    return False
 
 def find_player_with_most_assists():
     print()
@@ -173,7 +184,10 @@ while option != 8:
             print("")
         input("Press ENTER to continue")
     elif option == 4:
-        find_top_goal_scorer()
+        result = find_top_goal_scorer()
+        if result == False:
+            print("\nUnknown error. Please try again.")
+            print("")
         input("Press ENTER to continue")
     elif option == 5:
         find_player_with_most_assists()
