@@ -148,7 +148,18 @@ def find_top_goal_scorer():
     return False
 
 def find_player_with_most_assists():
-    print()
+    more_assist_name = ""
+    more_assists = 0
+    for key, player in manchester_players.items():
+        if more_assists < player["points_in_assists"]:
+            more_assist_name = player["name"]
+            more_assists = player["points_in_assists"]
+    if more_assists > 0:
+        print("Player with the most assists:", more_assist_name)
+        print("Points in assists:", more_assists)
+        print("")
+        return True
+    return False
 
 def find_player_highest_passing_accuracy():
     print()
