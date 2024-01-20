@@ -176,7 +176,18 @@ def find_player_highest_passing_accuracy():
     return False
 
 def find_player_most_defensive_involvements():
-    print()
+    defense_name = ""
+    involvements = 0
+    for key, player in manchester_players.items():
+        if involvements < player["defensive_involvements"]:
+            defense_name = player["name"]
+            involvements = player["defensive_involvements"]
+    if involvements > 0:
+        print("\nPlayer with the most defensive involvements:", defense_name)
+        print("Defensive involvements:", involvements)
+        print("")
+        return True
+    return False
 
 while option != 8:
     print_menu()
@@ -224,7 +235,10 @@ while option != 8:
             print("")
         input("Press ENTER to continue")
     elif option == 7:
-        find_player_most_defensive_involvements()
+        result = find_player_most_defensive_involvements()
+        if result == False:
+            print("\nUnknown error. Please try again.")
+            print("")
         input("Press ENTER to continue")
 
 print("Glory glory Man United!! See your soon!")
