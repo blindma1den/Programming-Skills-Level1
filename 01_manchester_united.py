@@ -68,6 +68,24 @@ def print_menu():
 def show_player_review(jersey):
     print()
 
+def compare_two_players(player1, player2):
+    print()
+
+def find_fastest_player():
+    print()
+
+def find_top_goal_scorer():
+    print()
+
+def find_player_with_most_assists()
+    print()
+
+def find_player_highest_passing_accuracy():
+    print()
+
+def find_player_most_defensive_involvements():
+    print()
+
 while option != 8:
     print_menu()
 
@@ -76,3 +94,25 @@ while option != 8:
         player_number = int(input("Jersey player number:"))
         show_player_review(player_number)
         input("Press ENTER to continue")
+    elif option == 2:
+        player1 = int(input("First jersey player number:"))
+        player2 = int(input("Second jersey player number:"))
+        compare_two_players(player1, player2)
+        input("Press ENTER to continue")
+    elif option == 3:
+        find_fastest_player()
+        input("Press ENTER to continue")
+    elif option == 4:
+        find_top_goal_scorer()
+        input("Press ENTER to continue")
+    elif option == 5:
+        find_player_with_most_assists()
+        input("Press ENTER to continue")
+    elif option == 6:
+        find_player_highest_passing_accuracy()
+        input("Press ENTER to continue")
+    elif option == 7:
+        find_player_most_defensive_involvements()
+        input("Press ENTER to continue")
+
+print("Glory glory Man United!! See your soon!")
