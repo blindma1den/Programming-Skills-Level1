@@ -162,7 +162,18 @@ def find_player_with_most_assists():
     return False
 
 def find_player_highest_passing_accuracy():
-    print()
+    accuracy_name = ""
+    accuracy = 0
+    for key, player in manchester_players.items():
+        if accuracy < player["points_in_passing"]:
+            accuracy_name = player["name"]
+            accuracy = player["points_in_passing"]
+    if accuracy > 0:
+        print("Player with the most accuracy:", accuracy_name)
+        print("Points in assists:", accuracy)
+        print("")
+        return True
+    return False
 
 def find_player_most_defensive_involvements():
     print()
@@ -201,10 +212,16 @@ while option != 8:
             print("")
         input("Press ENTER to continue")
     elif option == 5:
-        find_player_with_most_assists()
+        result = find_player_with_most_assists()
+        if result == False:
+            print("\nUnknown error. Please try again.")
+            print("")
         input("Press ENTER to continue")
     elif option == 6:
-        find_player_highest_passing_accuracy()
+        result = find_player_highest_passing_accuracy()
+        if result == False:
+            print("\nUnknown error. Please try again.")
+            print("")
         input("Press ENTER to continue")
     elif option == 7:
         find_player_most_defensive_involvements()
