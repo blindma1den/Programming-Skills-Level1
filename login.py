@@ -8,19 +8,20 @@ class User:
         self.passport = passport
         self.budget =budget
         self.reservation=reservation
+       
 
-users=[User(name="Mayber", id=1126785, password="pass", passport=122345, reservation=[]), 
-       User(name="Tony", id=34657212, password="reto1", passport=126345, reservation=[])]
+users=[User(name="Mayber", id=1126785, password="pass", passport=122345), 
+       User(name="Tony", id=34657212, password="reto1", passport=126345)]
 
 def search_user(userid:int)->User | bool:
     '''
     hace una búsqueda del usuario en las credenciales almacenadas si el usuario existe.
-    
+
     :param: userid:str - ID proporcionado por el usuario.
     :return: object or error - objeto resultante contiene datos del usuario.
 
     '''
-    user= filter(lambda user: user.id == userid, users)
+    user= filter(lambda user: user.name == userid, users)
     try:
         return list(user)[0]
     except:
@@ -34,16 +35,19 @@ def isvalid(userid:int, password:str)->bool:
     :return: bool - son correctas ambas credenciales?
     '''
     user= search_user(userid)
-    if not user: return False
-    if userid == user.userid and password == user.password: return True 
+    if not user: 
+        return False
+    if userid == user.name and password == user.password: 
+        return True 
 
 def login(userid:str, password:str):
     for i in range(3):
-        if i == 3:
+        isvalid(userid, password)
+        if isvalid(userid, password):
+            print("Success!")
+            return True
+        elif i == 2:
             print("You're blocked.")
-            break
-        elif isvalid(userid, password):
-            print("logged in successfully")
-            break
+            return False
         else:
             print(f"you have {i} tries left")

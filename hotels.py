@@ -19,26 +19,33 @@ class Hotel:
             self.room_type=room_type
             self.price=price
             self.available=available
+        def __str__(self) -> str:
+            return f"room type: {self.room_type}, price: {self.price}, available: {self.available}"
     rooms = [Room("single", 100, 3), Room("double", 200, 6), Room("group", 350, 6), Room("vip", 450, 6), Room("luxury", 550, 3)]
 
     def __init__(self, country, city) -> None:
         self.country=country
         self.city=city
         self.rooms
+    
+    def __str__(self) -> str:
+        return f"country: {self.country}, city: {self.city}, rooms: {[str(room) for room in self.rooms]}" 
+    def reservation(self, country, city ):
+        pass
 
 hotels =[Hotel("Spain", "Madrid"),Hotel("Spain", "Barcelona"), Hotel("Spain", "Valencia"),]
 
 
-def search_room(country, city, room)->Hotel | bool:
+def search_room(country:str, city:str)->Hotel | bool:
     '''
     hace una búsqueda del usuario en las credenciales almacenadas si el usuario existe.
     
     :param: country:str - ID proporcionado por el usuario.
     :return: object or error - objeto resultante contiene datos del usuario.
 
-    '''
-    hotel= filter(lambda hotel: hotel(country, city).rooms == room, hotels)
+    ''' 
     try:
+        hotel= filter(lambda hotel: hotel.country== country and hotel.city ==city, hotels)
         return list(hotel)[0]
     except:
         return False
@@ -60,3 +67,6 @@ def booking():
     pass
 def main():
     pass
+
+if __name__ == "__main__":
+    print(search_room("Spain", "Madrid"))
