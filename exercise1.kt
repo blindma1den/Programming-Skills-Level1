@@ -73,7 +73,7 @@ private fun selectOption(menssage: String, list: List<String>, notAvailable: Int
                 println("seleccione un jugador distinto al primero")
                 continue
             }
-            if (input > list.size || input == notAvailable) {
+            if (input > list.size) {
                 println("ingrese un numero valido")
                 continue
             } else {
