@@ -1,0 +1,23 @@
+{% extends 'valencia_hospital/base_valencia_hospital.html'%}
+{% block title%}Login - Valencia Hospital{% endblock %}
+{% block content %}
+    {% block subheader %}
+        {{super()}}
+        <h2>Login</h2>
+    {% endblock %}
+    {% if error %}
+        <p style="color: red;">{{error}}</p>
+    {% endif %}
+
+    {% if error == 'too many login attempts' %}
+        <p style="color: red;">Contact hospital support.</p>
+    {% else %}
+    <form action="{{url_for('valencia_hospital.login')}}" method="post">
+        <label for="valencia_username">Username:</label>
+        <input type="text" id="valencia_username" name="valencia_username" required><br><br>
+        <label for="valencia_password">Password:</label>
+        <input type="password" id="valencia_password" name="valencia_password" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+    {% endif %}
+{% endblock %}
