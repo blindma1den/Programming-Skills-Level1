@@ -25,6 +25,10 @@ doctors = {
     "Internal Medicine": {"doctors": ["Chris Taub", "Philip Weber", "Dana Miller"]}
 }
 
+users = []
+
+appointments = []
+
 login_attempts = 0
 username = "mitnick"
 password = "god"
@@ -42,6 +46,32 @@ def print_specialties():
     for specialty in specialties:
         print(count, "-", specialty)
         count += 1
+
+def verify_appointment(name, doctor, specialty):
+    if len(appointments) == 0:
+        return [True,""]
+    count_name = 0
+    count_doctor = 0
+    count_specialty = 0
+    for appointment in appointments:
+        if appointment[0] == name:
+            count_name += 1
+        if appointment[0] == name and appointment[1] == doctor:
+            count_doctor += 1
+        if appointment[0] == name and appointment[2] == specialty:
+            count_specialty += 1
+    # print("Counts:", count_name, count_doctor, count_specialty)
+    
+    if count_doctor >= 1:
+        return [False, "You already have an appointment with " + doctor]
+    
+    if count_specialty >= 1:
+        return [False, "You already have an appointment in the specialty " + specialty]
+    
+    if count_name > 2:
+        return [False, "You already have 3 appointments. Sorry"]
+    else:
+        return [True,""]
 
 os.system('clear')
 print("WELCOME TO VALENCIA HOSPITAL")
@@ -64,6 +94,22 @@ while option != 2:
     option = int(input("Choose an option: "))
     if option == 1:
         print_specialties()
-        option_specialty = int(input("Choose a specialty:"))
-        print(doctors[specialties[option_specialty - 1]])
-        input("Press ENTER to continue")
+        option_specialty = int(input("Choose a specialty: "))
+        print("")
+        user_name = input("What's your name? ")
+        print("")
+        i = 1
+        for doctor in doctors[specialties[option_specialty - 1]]["doctors"]:
+            print(str(i) + "- " + doctor)
+            i += 1
+        
+        doctor_option = int(input("Choose a doctor: "))
+        select_doctor = doctors[specialties[option_specialty - 1]]["doctors"][doctor_option - 1]
+        result = [True, ""]
+        result = verify_appointment(user_name, select_doctor, specialties[option_specialty - 1])
+        if result[0] == True:
+            appointments.append([user_name, select_doctor, specialties[option_specialty - 1]])
+            print("Your appointment is saved.")
+        else:
+            print("\nThere is an error with your appointment. " + result[1])
+        input("\nPress ENTER to continue")
