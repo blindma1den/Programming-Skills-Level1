@@ -1,0 +1,49 @@
+{% extends 'valencia_hospital/base_valencia_hospital.html' %}
+{% block title %}Dashboard - Valencia Hospital{% endblock %}
+{% block content %}
+    {% block subheader %}
+        {{super()}}
+        <h2>Appointments</h2>
+    {% endblock %}
+
+    {% if appointments %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Doctor</th>
+                    <th>Patient</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.doctor }}</td>
+                        <td>{{ appointment.speciality }}</td>
+                        <td>{{ appointment.time }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No appointments registered.</p>
+    {% endif %}
+
+    <h3>Register Appointment</h3>
+    <form>
+        <div class="form-group">
+            <label for="speciality">Speciality</label>
+            <select name="speciality" id="speciality" class="form-control">
+                {% for speciality in specialties %}
+                    <option value="{{ speciality.id }}">{{ speciality }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="time">Time</label>
+            <input type="time" name="time" id="time" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Next</button>
+{% endblock %}

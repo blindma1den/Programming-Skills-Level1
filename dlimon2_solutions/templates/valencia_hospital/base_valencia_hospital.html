@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{{super()}}
+{%block subheader%}
+<h1>Valencia Hospital</h1>
+<p>Appointment system</p>
+
+{%for message in get_flashed_messages()%}
+<br><br>
+<div class="error-message">
+    {{message}}
+</div>
+
+{%endfor%}
+
+{%endblock%}

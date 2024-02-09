@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{{super()}}
+{%block subheader%}
+<h1>Dani Travel</h1>
+<strong><p>We have special offers on all seasons of 2024!</p></strong>
+
+{%for message in get_flashed_messages()%}
+<br><br>
+<div class="error-message">
+    {{message}}
+</div>
+
+{%endfor%}
+
+{%endblock%}

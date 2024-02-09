@@ -1,0 +1,26 @@
+{%extends 'dani_travel/base_dani_travel.html'%}
+{%block title%}Dani Travel{%endblock%}
+{%block content%}
+    {% block subheader %}
+        {{super()}}
+    {% endblock %}
+
+    <h2>Search for your next trip</h2>
+    <p>We can help you find the perfect experience.</p>
+    <p>Find your perfect trip with the best options and prices.</p>
+    <style>
+        #season option {
+            text-align: center;
+        }
+    </style>
+
+    {% if best_travels %}
+        <h3>Best travels for you</h3>
+        <ul>
+            {% for travel in best_travels %}
+                <li>{{travel}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{%endblock%}

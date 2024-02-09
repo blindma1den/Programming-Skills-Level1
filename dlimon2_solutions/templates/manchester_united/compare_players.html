@@ -1,0 +1,105 @@
+{%extends 'manchester_united/base_manchester_united.html'%}
+{%block title%}Hello{%endblock%}
+{%block content%}
+    {% block subheader %}
+        {{super()}}
+        <h2>Compare Players</h2>
+    {% endblock %}
+
+    {% if players %}
+        <form action="{{url_for('manchester_united.compare_players')}}" method="post" onsubmit="return validate_form()">
+            <label for="first_player">Player 1:</label>
+            <select name="first_player" id="first_player" onchange="update_second_player_list()">
+                <option value="" disabled selected>Select first player</option>
+                {%for player in players%}
+                    <option value="{{player['jersey_number']}}">{{player['name']}}</option>
+                {%endfor%}
+            </select>
+            <br>
+            <label for="second_player">Player 2:</label>
+            <select name="second_player" id="second_player">
+                <option value="" disabled selected>Select second player</option>
+                {%for player in players%}
+                    <option value="{{player['jersey_number']}}">{{player['name']}}</option>
+                {%endfor%}
+            </select>
+            <br>
+            <input type="submit" value="Compare">
+        </form>
+        <script>
+            function update_second_player_list() {
+                var first_player = document.getElementById("first_player").value;
+                var second_player = document.getElementById("second_player");
+            
+                for (var i = 0; i < second_player.options.length; i++) {
+                    second_player.options[i].disabled = false;
+                }
+            
+                // disable the option selected in the first player list
+                for (var i = 0; i < second_player.options.length; i++) {
+                    if (second_player.options[i].value === first_player) {
+                        second_player.options[i].disabled = true;
+                        break;
+                    }
+                }
+            }
+
+            function validate_form() {
+                var first_player = document.getElementById("first_player").value;
+                var second_player = document.getElementById("second_player").value;
+            
+                if (first_player === second_player) {
+                    alert("Select different players!");
+                    return false;
+                }
+            
+                if (first_player === "" || second_player === "") {
+                    alert("Select a player!");
+                    return false;
+                }
+            
+                return true;
+            }
+        </script>
+        {% elif first_player and second_player %}
+
+        <style>
+            .data-display {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 20px;
+            }
+        </style>
+
+        <a href="{{url_for('manchester_united.compare_players')}}">Make another comparative</a>
+
+        <div class="data-display">
+            <div>
+                <h3>Player 1:</h3>
+                <p>Name: {{ first_player['name'] }}</p>
+                <p>Goals: {{ first_player['goals'] }}</p>
+                <p>Speed: {{ first_player['speed'] }}</p>
+                <p>Assists: {{ first_player['assists'] }}</p>
+                <p>Passing Accuracy: {{ first_player['passing_accuracy'] }}</p>
+                <p>Defensive Involvements: {{ first_player['defensive_involvements'] }}</p>
+                <p>Jersey Number: {{ first_player['jersey_number'] }}</p>
+            </div>
+            <div>
+                <h3>Player 2:</h3>
+                <p>Name: {{ second_player['name'] }}</p>
+                <p>Goals: {{ second_player['goals'] }}</p>
+                <p>Speed: {{ second_player['speed'] }}</p>
+                <p>Assists: {{ second_player['assists'] }}</p>
+                <p>Passing Accuracy: {{ second_player['passing_accuracy'] }}</p>
+                <p>Defensive Involvements: {{ second_player['defensive_involvements'] }}</p>
+                <p>Jersey Number: {{ second_player['jersey_number'] }}</p>
+            </div>
+        </div>
+
+        {% else %}
+            <p>No players to compare.</p>
+        
+    
+        {% endif %}   
+
+{%endblock%}

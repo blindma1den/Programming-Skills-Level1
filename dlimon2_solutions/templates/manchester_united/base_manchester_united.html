@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{{super()}}
+{%block subheader%}
+<h1>Manchester United</h1>
+<p>Coach Dashboard</p>
+<a href="{{url_for('manchester_united.top_stats')}}">Top Stats</a> ||
+<a href="{{url_for('manchester_united.compare_players')}}">Compare Player</a> ||
+<a href="{{url_for('manchester_united.player_details')}}">Player Details</a>
+
+{%for message in get_flashed_messages()%}
+<br><br>
+<div class="error-message">
+    {{message}}
+</div>
+
+{%endfor%}
+
+{%endblock%}

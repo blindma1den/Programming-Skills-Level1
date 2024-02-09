@@ -1,0 +1,40 @@
+{%extends 'dani_travel/base_dani_travel.html'%}
+{%block title%}Dani Travel{%endblock%}
+{%block content%}
+    {% block subheader %}
+        {{super()}}
+    {% endblock %}
+
+    <h2>Search for your next trip</h2>
+    <p>We can help you find the perfect experience.</p>
+    <p>Find your perfect trip with the best options and prices.</p>
+    <style>
+        #season option {
+            text-align: center;
+        }
+    </style>
+    <form action="{{url_for('dani_travel.best_travel')}}" method="post">
+        <label for="season">Season:</label>
+        <select id="season" name="season">
+            <option value="winter">Winter</option>
+            <option value="summer">Summer</option>
+            <option value="autumn">Autumn</option>
+            <option value="spring">Spring</option>
+        </select>
+
+        <label for="experiences">Experiences:</label>
+        <div>
+            <label for="experiences">Experiences:</label>
+            <select id="experiences" name="experiences" multiple>
+                <option value="cultural">Cultural</option>
+                <option value="extreme">Extreme</option>
+                <option value="tour">Tour</option>
+            </select>
+        </div>
+
+        <br><label for="budget">Budget:</label>
+        <input type="text" id="budget" name="budget" placeholder="USD" pattern="[0-9]+(\.[0-9]+)?" title="Please enter a valid number">
+
+        <button type="submit">Submit</button>
+    </form>
+{%endblock%}

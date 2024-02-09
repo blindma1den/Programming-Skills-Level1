@@ -1,0 +1,32 @@
+{%extends 'manchester_united/base_manchester_united.html'%}
+{%block title%}Hello{%endblock%}
+{%block content%}
+    {% block subheader %}
+        {{super()}}
+        <h2>Player Details</h2>
+    {% endblock %}
+
+    {% if not player %}
+
+    <form action="{{url_for('manchester_united.player_details')}}" method="post">
+        <input type="jersey_number" name="jersey_number" placeholder="Enter jersey number">
+        <button type="submit">Search</button>
+    </form>
+
+    {% elif player %}
+
+    <h3>{{player['name']}}</h3>
+
+    <div class="data-display">
+        <p>Goals: <strong>{{ player['goals'] }}</strong></p>
+        <p>Speed: <strong>{{ player['speed'] }}</strong></p>
+        <p>Assists: <strong>{{ player['assists'] }}</strong></p>
+        <p>Passing Accuracy: <strong>{{ player['passing_accuracy'] }}</strong></p>
+        <p>Defensive Involvements: <strong>{{ player['defensive_involvements'] }}</strong></p>
+        <p>Jersey Number: <strong>{{ player['jersey_number'] }}</strong></p>     
+    </div>
+
+    <br><a href="{{url_for('manchester_united.player_details')}}">Make another search</a>
+
+    {%endif%}
+{%endblock%}

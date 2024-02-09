@@ -1,0 +1,108 @@
+{%block head%}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            margin-top: 15px;
+            font-size: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ab021e;
+            font-weight: bold;
+        }
+
+        
+        .data-display {
+            margin-top: 20px;
+            border: 1px solid #ab021e;
+            border-radius: 5px;
+            padding: 10px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .error-message {
+            display: inline-block; /* Add this line */
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        form {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid;
+            border-radius: 5px;
+            border-color: #730303;
+            background-color: rgb(235, 235, 235);
+        }
+
+        label {
+            
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select,
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #8a0000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #a10000;
+        }
+    </style>
+        
+    </style>
+{%endblock%}
+
+{%block body%}
+    {%block header%}
+        <header>
+            @dlimon2 | Dev Level 1
+        </header>
+        <div>
+            <a href="{{url_for('hello')}}">Back to projects</a>
+        </div>
+    {%endblock%} 
+
+    {%block content%}
+    {%endblock%}
+    
+{%endblock%}
+{%block footer%}
+    <footer>
+        <hr style="width: 20%;">
+        <p>🄯2024 - by: <a href="htts://dlimon.net/" target="_blank">dlimon.net</a></p>
+    </footer>
+{%endblock%}
