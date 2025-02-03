@@ -1,0 +1,8 @@
+C:\Users\Usuario\source\repos\blindma1den-development\L1E5\bin\Debug\L1E5.exe.config
+C:\Users\Usuario\source\repos\blindma1den-development\L1E5\bin\Debug\L1E5.exe
+C:\Users\Usuario\source\repos\blindma1den-development\L1E5\bin\Debug\L1E5.pdb
+C:\Users\Usuario\source\repos\blindma1den-development\L1E5\obj\Debug\L1E5.csproj.AssemblyReference.cache
+C:\Users\Usuario\source\repos\blindma1den-development\L1E5\obj\Debug\L1E5.csproj.SuggestedBindingRedirects.cache
+C:\Users\Usuario\source\repos\blindma1den-development\L1E5\obj\Debug\L1E5.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\source\repos\blindma1den-development\L1E5\obj\Debug\L1E5.exe
+C:\Users\Usuario\source\repos\blindma1den-development\L1E5\obj\Debug\L1E5.pdb
